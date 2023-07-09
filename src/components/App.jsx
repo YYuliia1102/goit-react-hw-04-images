@@ -18,7 +18,7 @@ const App = () => {
 
   useEffect(() => {
     if (!query) return;
-    fetchImages();
+    fetchImages(query, page);
   }, [query, page]);
 
   const openModal = (image) => {
@@ -38,9 +38,10 @@ const App = () => {
     setShowModal(false);
   };
 
-  const fetchImages = async () => {
+  const fetchImages = async (query, page) => {
     setIsLoading(true);
     setError(null);
+
 
     try {
       const { images: fetchedImages, totalHits } = await getImages(query, page);
